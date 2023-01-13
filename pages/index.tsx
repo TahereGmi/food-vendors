@@ -5,7 +5,7 @@ import { increment, decrement, selectedValue } from '../store/reducers/counterRe
 import { getVendors } from '../store/reducers/vendorsReducer'
 import type {} from 'redux-thunk/extend-redux';
 
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 
 const Home = () => {
   const count = useSelector(selectedValue)
@@ -20,7 +20,7 @@ const Home = () => {
 
       <main className={styles.main}>
         <h1>
-          Home Page
+          اسنپ فود
         </h1>
 
         <p className={styles.description}>
