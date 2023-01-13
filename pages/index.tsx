@@ -24,7 +24,6 @@ const Home = () => {
         </h1>
 
         <p className={styles.description}>
-          links:
           <Link 
             href='/vendors'>
             Vendors
