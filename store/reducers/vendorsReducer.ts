@@ -1,20 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { IVendors, IQueryParams } from '../../types/vendors'
 import { RootState } from '../store'
 import API from '../../helpers/API'
 
-export interface IVendors {
-    result: any
-}
-
-export interface IQueryParams {
-    page: number, 
-    page_size: number, 
-    lat: number, 
-    long: number
-}
-
 const initialState: IVendors = {
-    result: {},
+  result: [],
+  loading: false,
+  loaded: false,
+  error: null
 }
 
 export const getVendors = createAsyncThunk(
@@ -30,12 +23,21 @@ export const vendorsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(getVendors.pending, (state) => {
+      state.loading = true
+    }),
+    builder.addCase(getVendors.rejected, (state, action) => {
+      state.loading = false
+      state.error = action.error
+    }),
     builder.addCase(getVendors.fulfilled, (state, action) => {
-      state.result = action.payload
+      state.result = action.payload.data.data.finalResult
+      state.loaded = true
+      state.loading = false
     })
   },
 })
 
-export const selectedValue = (state: RootState) => state.vendors.result
+export const selectedValue = (state: RootState) => state.vendors
 
 export default vendorsSlice.reducer
