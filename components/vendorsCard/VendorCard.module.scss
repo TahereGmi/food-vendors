@@ -1,11 +1,60 @@
+@import '../../styles/variables';
 .vendorCard {
-    // background-color: #f56;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.vendorCard__banner {
+    width: 100%;
+    height: 130px;
+    background-size: cover;
 }
 .vendorCard__details {
-    background-color: #456;
+    position: relative;
 }
 .vendorCard__info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
+}
+.vendorCard__info__logo {
+    width: 70px;
+    height: 70px;
+    margin: 0;
+    position: absolute;
+    top: -50px;
+    right: 15px;
+    padding: 4px;
+    background: #fff;
+    border-radius: 5px;
+    img {
+        display: block;
+        width: 100%;
+        border-radius: 5px;
+    }
+}
+
+.vendorCard__info__title {
+    font-size: 14px;
+    margin-top: 30px;
+    padding-right: 20px;
+}
+
+.vendorCard__info__rate {
+    font-size: 12px;
+    margin-top: 30px;
+    width: 40px;
+    height: 15px;
+
+    &.colorStar4 {
+        background-color: $light-star-color-40;
+    }
+
+    &.colorStar3 {
+        background-color: $light-star-color-30;
+    }
+
+    &.colorStar2 {
+        background-color: $light-star-color-20;
+    }
 }
