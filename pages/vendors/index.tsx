@@ -1,17 +1,19 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Head from 'next/head'
 import styles from './Vendors.module.scss'
 import { VendorCard } from '../../components'
 import { getVendors, selectedValue } from '../../store/reducers/vendorsReducer'
-import {  IVendorResult, IVendors } from '../../types/vendors'
+import { IVendorResult, IVendors } from '../../types/vendors'
 
 const Vendors = () => {
+	const [queryParams, setQueryParams] = useState({ page: 1, page_size:10, lat: 35.754, long: 51.328 });
 	const dispatch = useDispatch()
 	const vendors = useSelector(selectedValue) as IVendors
+	const getAllVendors = () => dispatch(getVendors(queryParams))
 
 	useEffect(() => {
-		dispatch(getVendors({ page: 0, page_size:10, lat: 35.754, long: 51.328 }))
+		getAllVendors()
 	}, [])
 
 	return (
